@@ -9,11 +9,9 @@
             Donita using Django, JQuery and Blueprint
         {%endblock%}
     </title>
-	<link rel="stylesheet" href="/static/css/blueprint/screen.css" type="text/css" media="screen, projection">
+	<link rel="stylesheet" href="/static/css/blueprint/screen.css" type="text/css" media="screen, projection">   
 	<link rel="stylesheet" href="/static/css/blueprint/print.css" type="text/css" media="print">
-    <link rel="stylesheet" href="/static/css/blueprint/plugins/buttons/buttons.css" type="text/css" media="screen, projection">
-	<link rel="stylesheet" href="/static/css/blueprint/plugins/fancy-type/fancy-type.css" type="text/css" media="screen, projection">
-	
+    <link rel="stylesheet" href="/static/css/donita.css" type="text/css" media="screen, projection">
 	<script type="text/javascript" src="/static/js/jquery.js"></script>
     <script type="text/javascript" src="/static/js/jquery.form.js"></script>
     {% block extrajs %} {% endblock %}
@@ -21,39 +19,46 @@
 </head>
 
 <body>
-	<div class="container">  
-		<h1><a href="/">Donita</a></h1>
-		<hr>
-		  <h2 class="alt">Have you done it yet?</h2>
-		<hr>
-        <div id="tada" class="column span-15 prepend-1 colborder">
+<div id="wrapper" class="container" >
+    <div id="header" class="column span-24 ">
+        <span id="logo" class="column span-15 prepend-1 colborder">
+            <span id="sitename"><a href="/">Donita</a> </span>
+            &raquo; <span class="alt">Have you done it yet?</span>
+        </span>    
+        <span id="nav" class="column span-7 last">
+            <p>
+                    Hello! {{user.username}}                    
+                    {% if not user.is_authenticated %}
+                        Please <a href="/accounts/login/">login</a>.
+                    {% endif %}
+                    {% if user.is_authenticated %}
+                        <a href="/accounts/logout/">logout</a>.
+                    {% endif %}                
+            </p>
+        </span><!-- nav -->
+    </div><!-- header -->
+    
+    <div id="main" class="column span-15 prepend-1 colborder">    
         <div id="msg"></div>
-		{% block content %}
+        {% block content %}
         {% endblock %}
-        </div>
-		<div class="column span-7 last">
+    </div>
+    
+    <div id="sidebar" class="column span-7 last">
         {% block sidebar%}
-            <p>
-                Hello! {{user.username}}
-                <br>
-                {% if not user.is_authenticated %}
-                    Please <a href="/accounts/login/">login</a>.
-                {% endif %}
-                {% if user.is_authenticated %}
-                    <a href="/accounts/logout/">logout</a>.
-                {% endif %}                
-            </p>
-            <p>
-            </p>
-        {% endblock %}
-		</div>
-		<hr>
-        <p>Made by <a href="http://www.btbytes.com/">btbytes</a><br>
-        Made with 
+          {% endblock %}
+    </div>
+    
+    <div id="footer" class="column span-24 last">
+        <span id="copyright">    
+            <p>Made by <a href="http://www.btbytes.com/">btbytes</a><br>
+            Made with 
             <span class="alt"><a href="http://www.djangoproject.com">Django</a></span>,
             <span class="alt"><a href="http://www.jquery.com">jQuery</a></span> and
             <span class="alt"><a href="http://code.google.com/p/blueprintcss/">Blueprint CSS</a></span>.
             </p>
-	</div>
+        </span>    
+    </div>
+</div>
 </body>
 </html>

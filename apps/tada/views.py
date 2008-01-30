@@ -16,7 +16,7 @@ from django.template.loader import get_template
 @login_required
 def get_items(request):
     items = Todo.objects.filter(user__username__exact = request.user.username).order_by('-pub_date')
-    tmpl = get_template('todo_ahah.html')
+    tmpl = get_template('tada/todo_ahah.html')
     return HttpResponse(tmpl.render(Context({'items':items})))
 
 @login_required

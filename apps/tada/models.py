@@ -1,5 +1,5 @@
 '''
-views.py
+models.py
 
 Copyright 2008, Pradeep Kishore Gowda <pradeep.gowda@gmail.com>
 All rights reserved.
