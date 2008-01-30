@@ -1,0 +1,31 @@
+body{
+margin-top:0em;
+}
+div #header{
+    background-color:#004;
+    border-bottom: solid 1px #ccc;
+    color:#fff;
+    margin-bottom: 1em;
+}
+div#header a{
+    color:#fff;
+    
+}
+#sitename{
+    font-family: verdana, sans-serif;
+    font-size:1.2em;
+}
+
+#wrapper{
+    border: solid 1px #ccc;
+}
+
+
+div#footer{
+    background-color:#ff9;
+    margin-top:1em;
+    border-top: solid 1px #ccc;
+}
+#copyright{
+    margin-left:1em;
+}
