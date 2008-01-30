@@ -1,0 +1,14 @@
+{% for item in items %}
+        <div  style="clear:both;">
+                {% ifequal item.status 0 %}                    
+                <input type="checkbox" id="item_{{item.id}}" class="button positive" onclick="update_status('item_{{item.id}}')" />
+                {% endifequal %}
+                {% ifequal item.status 1 %}                    
+                    <span style="font-size:1.2em; padding-top:5px;" class="task_done" id="task_{{item.id}}">{{item.action}}</span>
+                {% endifequal %}
+                
+                {% ifequal item.status 0 %}                    
+                    <span style="font-size:1.2em; padding-top:5px;" id="task_{{item.id}}">{{item.action}}</span>
+                {% endifequal %}
+        </div>        
+    {% endfor %}

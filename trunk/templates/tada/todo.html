@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block title %} Hello Tadalist!{% endblock %}
+
+{% block extracss %} 
+    <style type="text/css">
+      #tbl{border: solid 1px #ccc;}
+      .task_done{text-decoration:line-through;}
+      div#msg{
+      font-size:1.2em;
+      text-decoration:italics;
+      padding:0.5em;
+      }
+    </style>
+{% endblock %}
+
+{% block extrajs %}
+<script type="text/javascript">
+function update_status(item_id){
+  var item = document.getElementById(item_id);
+  $.post('/todo/del/',{'item_id':item_id.split('_')[1]}, function(data, status){
+    $("#msg").text(status);
+    $(item).hide();
+    $("#task_"+ item_id.split('_')[1]).addClass('task_done');
+    $("#msg").slideUp(2000);
+  });
+  
+}
+function load_items(){
+    /* load existing items */
+    $("#items").load("/todo/items/");   
+}
+$(window).load(function () {
+    load_items();
+    
+    //ajax form handler
+    $("#newitem").ajaxForm(function () { 
+        load_items();
+    });  
+});       
+</script>
+{% endblock %}
+
+{% block content %}
+    <form id="newitem" action="/todo/add/" method="post">
+        <fieldset>
+            <p><label for="action"></label>
+              <input type="text" class="title" name="action" id="action" value="Remember the Milk">
+            <!-- br><input type="submit" value="Submit" --></p>
+        </fieldset>
+    </form>
+    <div id="items"><!-- here be items --></div>
+{% endblock %}
